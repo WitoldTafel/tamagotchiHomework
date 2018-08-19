@@ -37,6 +37,7 @@ public class View extends BorderPane {
     private Label numberOfBeersLeft = new Label();
     private Label numberOfDrugsLeft = new Label();
     private VBox newsVBox = new VBox();
+    int nightStart;
 
     private AnimationTimer updater = new AnimationTimer() {
         @Override
@@ -72,6 +73,7 @@ public class View extends BorderPane {
                     break;
             }
             if(model.isDead())dude.setImage(new Image("rip.png"));
+            if(model.getAge()>nightStart+5) View.this.setStyle("-fx-background-color: white;");//??????
         }
     };
 
@@ -150,6 +152,8 @@ public class View extends BorderPane {
     }
 
     void makeNight(){
+        nightStart = model.getAge();
+        this.setStyle("-fx-background-color: black;");
     }
 }
 

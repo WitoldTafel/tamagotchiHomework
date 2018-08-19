@@ -22,7 +22,7 @@ public class Controller {
         ((View) this.view).pill.setOnMouseClicked(e ->model.takeDrugs());
         ((View) this.view).pizza.setOnMouseClicked(e ->model.eat());
         ((View) this.view).workout.setOnMouseClicked(e ->model.excersise());
-        ((View) this.view).sleep.setOnMouseClicked(e ->{model.sleep();});
+        ((View) this.view).sleep.setOnMouseClicked(e ->{model.sleep();((View) this.view).makeNight();});
     }
 
     private void addListenerToSlider(View view){
