@@ -7,10 +7,10 @@ public class TimeLoop extends AnimationTimer {
 
     private Model model;
 
-    private final int getingHungryInterval = 35;
-    private final int getingSleepyInterval = 80;
+    private final int getingHungryInterval = 15;
+    private final int getingSleepyInterval = 30;
     private final int getingSickInterval = 10;
-    private final int getingSadinterval = 13;
+    private final int getingSadinterval = 10;
 
     private int multiplier = 60;
     private int counter = 0;

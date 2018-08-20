@@ -2,36 +2,36 @@ package Tamagotchi;
 
 import Tamagotchi.Model.Model;
 import Tamagotchi.Model.TimeLoop;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.scene.layout.Pane;
 
 public class Controller {
 
-    private Model model;
-    private Pane view;
     TimeLoop timeLoop;
+    private Model model;
+    private View view;
 
-    public Controller(Model model, Pane view){
+    public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
         this.timeLoop = new TimeLoop(model);
+
         timeLoop.start();
-        addListenerToSlider((View) this.view);
-        ((View) this.view).beer.setOnMouseClicked(e ->model.drinkBeer());
-        ((View) this.view).pill.setOnMouseClicked(e ->model.takeDrugs());
-        ((View) this.view).pizza.setOnMouseClicked(e ->model.eat());
-        ((View) this.view).workout.setOnMouseClicked(e ->model.excersise());
-        ((View) this.view).sleep.setOnMouseClicked(e ->{model.sleep();((View) this.view).makeNight();});
+        addListenerToSlider();
+        this.view.beer.setOnMouseClicked(e -> view.setMsg(model.drinkBeer()));
+        this.view.pill.setOnMouseClicked(e -> view.setMsg(model.takeDrugs()));
+        this.view.pizza.setOnMouseClicked(e -> view.setMsg(model.eat()));
+        this.view.workout.setOnMouseClicked(e -> view.setMsg(model.sing()));
+        this.view.sleep.setOnMouseClicked(e -> {
+            if (model.isSleepy()) this.view.makeNight();
+            view.setMsg(model.sleep());
+        });
     }
 
-    private void addListenerToSlider(View view){
-        view.slider.valueProperty().addListener(new ChangeListener<Number>() {
-            public void changed(ObservableValue<? extends Number> ov,
-                                Number old_val, Number new_val) {
-                timeLoop.setMultiplier(new_val.intValue());
-            }
-        });
+    private void addListenerToSlider() {
+        view.slider.valueProperty().addListener(
+                (ov, old_val, new_val)
+                        ->
+                        timeLoop.setMultiplier(new_val.intValue())
+        );
     }
 
 

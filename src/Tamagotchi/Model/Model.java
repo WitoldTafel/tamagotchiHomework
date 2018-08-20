@@ -5,7 +5,7 @@ import java.util.Random;
 public class Model {
 
     int age = 0;
-    double health = 100;
+    double health = 200;
     double energy = 10;
     double happiness = 0;
     int numberOfDrugs = 5;
@@ -74,7 +74,9 @@ public class Model {
         }
     }
 
-    void getHungry() { hungry = true; }
+    void getHungry() {
+        hungry = true;
+    }
 
     void getSleepy() {
         sleepy = true;
@@ -94,35 +96,55 @@ public class Model {
 
     //////////// USER ACTIONS //////////////////////////
 
-    public void eat() {
-        hungry = false;
-        lastMealTime = age;
+    public String eat() {
+        if (hungry) {
+            hungry = false;
+            lastMealTime = age;
+            return "Mniam mniam";
+        } else {
+            return "I'm not hungry!";
+        }
     }
 
-    public void sleep() {
-        sleepy = false;
-        increaseEnergy(5);
-        lastWakeUpTime = age;
+    public String sleep() {
+        if (sleepy) {
+            sleepy = false;
+            increaseEnergy(5);
+            lastWakeUpTime = age;
+            return "Goodnight!";
+        } else {
+            return "I'm not sleepy!";
+        }
     }
 
-    public void drinkBeer() {
-        if(nuberOfBeers>0){
+    public String drinkBeer() {
+        if (nuberOfBeers > 0) {
             increaseHappiness(3);
             nuberOfBeers--;
+            return "Psssst";
+        }else{
+            return "Beer is gone!!!!!!!";
         }
     }
 
-    public void takeDrugs() {
-        if(numberOfDrugs>0){
+    public String takeDrugs() {
+        if (numberOfDrugs > 0) {
             numberOfDrugs--;
+            increaseEnergy(5);
             sick = false;
+            return "Feels goooooood";
+        }else{
+            return "Got anymore of them pills?";
         }
     }
 
-    public void excersise() {
+    public String sing() {
         if (energy >= 3) {
             decreaseEnergy(3);
             increaseHappiness(2);
+            return "LaLAlalalaLA lalal LA la LA la";
+        }else{
+            return "To tired to sing :(";
         }
     }
 

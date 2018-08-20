@@ -16,7 +16,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         Model model = new Model();
-        Pane view = new View(model);
+        View view = new View(model);
 
         new Controller(model, view);
 
