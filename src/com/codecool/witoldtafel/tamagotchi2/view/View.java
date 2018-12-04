@@ -44,14 +44,25 @@ public class View extends BorderPane {
     private int msgStart;
     private Tooltip healthTooltip = new Tooltip();
 
+    public View(Model model) {
+        this.model = model;
+        setHBox(this);
+        setLeftVBox(this);
+        setRightVBox(this);
+        setCenter(dude);
+        setNewsVBox(this);
+        updater.start();
+        Tooltip.install(healthBar, healthTooltip);
+    }
+
     private AnimationTimer updater = new AnimationTimer() {
         @Override
         public void handle(long now) {
             age.setText(String.valueOf(model.getAge()));
-            energyBar.setProgress(model.getEnergy() / 10);
-            healthBar.setProgress(model.getHealth() / 100);
+            energyBar.setProgress(model.getEnergy() / model.getInitialEnergy());
+            healthBar.setProgress(model.getHealth() / model.getInitialHealth());
             healthTooltip.setText(String.valueOf(model.getHealth()));
-            happinessBar.setProgress(model.getHappiness() / 20 + 0.5);
+            happinessBar.setProgress(model.getHappiness() / (2*model.getMaxHappiness()) + 0.5);
             numberOfBeersLeft.setText(model.getNuberOfBeers() + " beers left");
             numberOfDrugsLeft.setText(model.getNumberOfDrugs() + " pills left");
             sick.setVisible(model.isSick());
@@ -88,16 +99,7 @@ public class View extends BorderPane {
         }
     };
 
-    public View(Model model) {
-        this.model = model;
-        setHBox(this);
-        setLeftVBox(this);
-        setRightVBox(this);
-        setCenter(dude);
-        setNewsVBox(this);
-        updater.start();
-        Tooltip.install(healthBar, healthTooltip);
-    }
+
 
     private void setHBox(BorderPane pane) {
 

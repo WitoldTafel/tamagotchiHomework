@@ -4,32 +4,43 @@ import java.util.Random;
 
 public class Model {
 
-    int age = 0;
-    double health = 100;
-    double energy = 10;
-    double happiness = 0;
-    private int numberOfDrugs = 5;
-    private int nuberOfBeers = 5;
-
-    int lastMealTime;
-    int lastWakeUpTime;
+    private final int initialAge = 0;
+    private final int initialHealth = 100;
+    private final int initialEnergy = 10;
+    private final int initialNubreOfDrugs = 5;
+    private final int initialNumberOfBeers = 5;
+    private final int maxHappiness = 10;
 
 
-    boolean hungry;
-    boolean dead;
-    boolean sleepy;
-    boolean sick;
-    boolean asleep;
+    private int age = initialAge;
+    private double health = initialHealth;
+    private double energy = initialEnergy;
+    private double happiness = 0;
+    private int numberOfDrugs = initialNubreOfDrugs;
+    private int nuberOfBeers = initialNumberOfBeers;
+
+    private int lastMealTime;
+    private int lastWakeUpTime;
+
+    private boolean hungry;
+    private boolean dead;
+    private boolean sleepy;
+    private boolean sick;
+    private boolean asleep;
+
+    private double chanceOfSickness = 10 + age / 60 - happiness / 2 - energy / 4;
+
 
     public void increaseAge(int i) {
+
         this.age += i;
     }
 
     void increaseHealth(int i) {
-        if (health + i <= 100) {  //not tdd
+        if (health + i <= initialHealth) {  //not tdd
             health += i;
         } else {
-            health = 100;
+            health = initialHealth;
         }
     }
 
@@ -43,10 +54,10 @@ public class Model {
     }
 
     void increaseEnergy(int i) {
-        if (energy + i <= 10) {
+        if (energy + i <= initialEnergy) {
             energy += i;
         } else {
-            energy = 10;
+            energy = initialEnergy;
         }
     }
 
@@ -59,18 +70,18 @@ public class Model {
     }
 
     void increaseHappiness(int i) {
-        if (happiness + i <= 10) {
+        if (happiness + i <= maxHappiness) {
             happiness += i;
         } else {
-            happiness = 10;
+            happiness = maxHappiness;
         }
     }
 
     public void decreaseHappiness(int i) {
-        if (happiness - i >= -10) {  //not tdd
+        if (happiness - i >= -maxHappiness) {  //not tdd
             happiness -= i;
         } else {
-            happiness = -10;
+            happiness = -maxHappiness;
         }
     }
 
@@ -87,7 +98,6 @@ public class Model {
     }
 
     public void startSickness() {
-        double chanceOfSickness = 10 + age / 60 - happiness / 2 - energy / 4;
 
         if (chanceOfSickness > new Random().nextInt(100)) {
             sick = true;
@@ -122,7 +132,7 @@ public class Model {
             increaseHappiness(3);
             nuberOfBeers--;
             return "Psssst";
-        }else{
+        } else {
             return "Beer is gone!!!!!!!";
         }
     }
@@ -133,7 +143,7 @@ public class Model {
             increaseEnergy(5);
             sick = false;
             return "Feels goooooood";
-        }else{
+        } else {
             return "Got anymore of them pills?";
         }
     }
@@ -143,7 +153,7 @@ public class Model {
             decreaseEnergy(3);
             increaseHappiness(2);
             return "LaLAlalalaLA lalal LA la LA la";
-        }else{
+        } else {
             return "To tired to sing :(";
         }
     }
@@ -195,7 +205,24 @@ public class Model {
         return asleep;
     }
 
-    public int getLastMealTime() { return lastMealTime; }
+    public int getLastMealTime() {
+        return lastMealTime;
+    }
 
-    public int getLastWakeUpTime() { return lastWakeUpTime; }
+    public int getLastWakeUpTime() {
+        return lastWakeUpTime;
+    }
+
+
+    public int getInitialHealth() {
+        return initialHealth;
+    }
+
+    public int getInitialEnergy() {
+        return initialEnergy;
+    }
+
+    public int getMaxHappiness() {
+        return maxHappiness;
+    }
 }

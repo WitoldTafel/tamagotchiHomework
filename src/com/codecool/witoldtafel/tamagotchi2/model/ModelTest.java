@@ -11,75 +11,75 @@ class ModelTest {
     @Test
     void increaseAge(){
         model.increaseAge(3);
-        assertEquals(model.age,3);
+        assertEquals(model.getAge(),3);
     }
 
     @Test
     void increaseHealth() {
         model.increaseHealth(2);
-        assertEquals(model.health,100);
+        assertEquals(model.getHealth(),100);
     }
 
     @Test
     void decreaseHealth() {
-        System.out.println(model.health);
+        System.out.println(model.getHealth());
 
         model.decreaseHealth(102);
-        System.out.println(model.health);
-        assertEquals(model.health,0);
+        System.out.println(model.getHealth());
+        assertEquals(model.getHealth(),0);
     }
 
     @Test
     void increaseEnergy() {
         model.increaseEnergy(2);
-        assertEquals(model.energy,10);
+        assertEquals(model.getEnergy(),10);
     }
 
     @Test
     void decreaseEnergy() {
         model.decreaseEnergy(2);
-        assertEquals(model.energy,8);
+        assertEquals(model.getEnergy(),8);
     }
 
     @Test
     void increaseHappiness() {
         model.increaseHappiness(12);
-        assertEquals(model.happiness,10);
+        assertEquals(model.getHappiness(),10);
     }
 
     @Test
     void decreaseHappiness() {
         model.decreaseHappiness(12);
-        assertEquals(model.happiness,-10);
+        assertEquals(model.getHappiness(),-10);
     }
 
     @Test
     void getHungry() {
         model.startHunger();
-        assertTrue(model.hungry);
+        assertTrue(model.isHungry());
     }
 
     @Test
     void eat() {
         model.eat();
-        assertFalse(model.hungry);
+        assertFalse(model.isHungry());
     }
 
     @Test
     void getSleepy() {
         model.startSleepiness();
-        assertTrue(model.sleepy);
+        assertTrue(model.isSleepy());
     }
 
     @Test
     void sleep() {
         model.sleep();
-        assertFalse(model.sleepy);
+        assertFalse(model.isSleepy());
     }
     @Test
     void die() {
         model.die();
-        assertTrue(model.dead);
+        assertTrue(model.isDead());
     }
 
 

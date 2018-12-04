@@ -3,12 +3,12 @@ package com.codecool.witoldtafel.tamagotchi2.controller;
 import com.codecool.witoldtafel.tamagotchi2.view.View;
 import com.codecool.witoldtafel.tamagotchi2.model.Model;
 
-public class Controller {
+public class MainController {
 
     private TimeLoop timeLoop;
     private View view;
 
-    public Controller(Model model, View view) {
+    public MainController(Model model, View view) {
         this.view = view;
         this.timeLoop = new TimeLoop(model);
 

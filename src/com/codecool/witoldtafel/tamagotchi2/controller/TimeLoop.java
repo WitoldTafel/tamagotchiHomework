@@ -11,11 +11,11 @@ public class TimeLoop extends AnimationTimer {
     private int multiplier = 60;
     private int counter = 0;
 
-    public TimeLoop(Model model){
+    TimeLoop(Model model){
         this.model = model;
     }
 
-    public void setMultiplier(int value) {
+    void setMultiplier(int value) {
         multiplier = 60/value ;
     }
 
