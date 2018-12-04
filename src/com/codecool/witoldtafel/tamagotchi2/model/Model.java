@@ -21,7 +21,7 @@ public class Model {
     boolean sick;
     boolean asleep;
 
-    void increaseAge(int i) {
+    public void increaseAge(int i) {
         this.age += i;
     }
 
@@ -33,7 +33,7 @@ public class Model {
         }
     }
 
-    void decreaseHealth(int i) {
+    public void decreaseHealth(int i) {
         if (health - i >= 0) {
             health -= i;
         } else {
@@ -50,7 +50,7 @@ public class Model {
         }
     }
 
-    void decreaseEnergy(int i) {
+    public void decreaseEnergy(int i) {
         if (energy - i >= 0) {  //not tdd
             energy -= i;
         } else {
@@ -66,7 +66,7 @@ public class Model {
         }
     }
 
-    void decreaseHappiness(int i) {
+    public void decreaseHappiness(int i) {
         if (happiness - i >= -10) {  //not tdd
             happiness -= i;
         } else {
@@ -74,11 +74,11 @@ public class Model {
         }
     }
 
-    void startHunger() {
+    public void startHunger() {
         hungry = true;
     }
 
-    void startSleepiness() {
+    public void startSleepiness() {
         sleepy = true;
     }
 
@@ -86,7 +86,7 @@ public class Model {
         dead = true;
     }
 
-    void startSickness() {
+    public void startSickness() {
         double chanceOfSickness = 10 + age / 60 - happiness / 2 - energy / 4;
 
         if (chanceOfSickness > new Random().nextInt(100)) {
@@ -194,4 +194,8 @@ public class Model {
     public boolean isAsleep() {
         return asleep;
     }
+
+    public int getLastMealTime() { return lastMealTime; }
+
+    public int getLastWakeUpTime() { return lastWakeUpTime; }
 }

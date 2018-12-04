@@ -1,5 +1,6 @@
-package com.codecool.witoldtafel.tamagotchi2.model;
+package com.codecool.witoldtafel.tamagotchi2.controller;
 
+import com.codecool.witoldtafel.tamagotchi2.model.Model;
 import javafx.animation.AnimationTimer;
 
 
@@ -22,7 +23,7 @@ public class TimeLoop extends AnimationTimer {
     // This gets called every 1/60 seconds
     @Override
     public void handle(long now) {
-        if(model.dead){
+        if(model.isDead()){
             this.stop();
         }
         counter++;
@@ -34,8 +35,8 @@ public class TimeLoop extends AnimationTimer {
 /////////////////////////SADNESS////////////////////////////////
 
             int getingSadinterval = 10;
-            if(model.age/ getingSadinterval == 0){
-                if (model.happiness>0){
+            if(model.getAge()/ getingSadinterval == 0){
+                if (model.getHappiness()>0){
                     model.decreaseHappiness(1);
                 }
             }
@@ -43,30 +44,30 @@ public class TimeLoop extends AnimationTimer {
 /////////////////////////HUNGER////////////////////////////////
 
             int getingHungryInterval = 15;
-            if((model.age - model.lastMealTime) % getingHungryInterval == 0){
+            if((model.getAge() - model.getLastMealTime()) % getingHungryInterval == 0){
                 model.startHunger();
             }
-            if (model.hungry & model.age % 5 == 0){
+            if (model.isHungry() & model.getAge() % 5 == 0){
                 model.decreaseHealth(3);
                 model.decreaseHappiness(2);
 
             }
 ////////////////////////SLEEPINESS////////////////////////////////
             int getingSleepyInterval = 30;
-            if((model.age - model.lastWakeUpTime) % getingSleepyInterval == 0){
+            if((model.getAge() - model.getLastWakeUpTime()) % getingSleepyInterval == 0){
                 model.startSleepiness();
             }
-            if (model.sleepy & model.age % 3 == 0){
+            if (model.isSleepy() & model.getAge() % 3 == 0){
                 model.decreaseHealth(1);
                 model.decreaseHappiness(1);
                 model.decreaseEnergy(1);
             }
 ////////////////////////SICKNESS////////////////////////////////
             int getingSickInterval = 10;
-            if(model.age  % getingSickInterval == 0){
+            if(model.getAge()  % getingSickInterval == 0){
                 model.startSickness();
             }
-            if (model.sick){
+            if (model.isSick()){
                 model.decreaseHealth(2);
             }
         }

@@ -2,7 +2,6 @@ package com.codecool.witoldtafel.tamagotchi2.controller;
 
 import com.codecool.witoldtafel.tamagotchi2.view.View;
 import com.codecool.witoldtafel.tamagotchi2.model.Model;
-import com.codecool.witoldtafel.tamagotchi2.model.TimeLoop;
 
 public class Controller {
 
