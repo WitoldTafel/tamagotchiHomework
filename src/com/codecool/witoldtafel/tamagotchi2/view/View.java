@@ -1,7 +1,7 @@
-package Tamagotchi;
+package com.codecool.witoldtafel.tamagotchi2.view;
 
 
-import Tamagotchi.Model.Model;
+import com.codecool.witoldtafel.tamagotchi2.model.Model;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,14 +18,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class View extends BorderPane {
-    static final int WIDTH = 1000;
-    static final int HEIGHT = 700;
-    Slider slider = new Slider();
-    ImageView pizza = new ImageView(new Image("pizza.png"));
-    ImageView sleep = new ImageView(new Image("sleep.png"));
-    ImageView workout = new ImageView(new Image("sing.png"));
-    ImageView beer = new ImageView(new Image("beer.png"));
-    ImageView pill = new ImageView(new Image("pills.png"));
+    public static final int WIDTH = 1000;
+    public static final int HEIGHT = 700;
+    public Slider slider = new Slider();
+    public ImageView pizza = new ImageView(new Image("pizza.png"));
+    public ImageView sleep = new ImageView(new Image("sleep.png"));
+    public ImageView workout = new ImageView(new Image("sing.png"));
+    public ImageView beer = new ImageView(new Image("beer.png"));
+    public ImageView pill = new ImageView(new Image("pills.png"));
     private Model model;
     private ImageView sick = new ImageView(new Image("sick.png"));
     private ImageView hungry = new ImageView(new Image("hungry.png"));
@@ -161,13 +161,13 @@ public class View extends BorderPane {
         pane.setBottom(newsVBox);
     }
 
-    void makeNight() {
+    public void makeNight() {
         nightStart = model.getAge();
         this.setStyle("-fx-background-color: black;");
         msg.setFill(Color.GOLD);
     }
 
-    void setMsg(String msg) {
+    public void setMsg(String msg) {
         msgStart = model.getAge();
         this.msg.setText(msg);
     }

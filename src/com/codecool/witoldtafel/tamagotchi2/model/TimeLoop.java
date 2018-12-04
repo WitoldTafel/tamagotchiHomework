@@ -1,4 +1,4 @@
-package Tamagotchi.Model;
+package com.codecool.witoldtafel.tamagotchi2.model;
 
 import javafx.animation.AnimationTimer;
 

@@ -1,14 +1,15 @@
-package Tamagotchi;
+package com.codecool.witoldtafel.tamagotchi2.controller;
 
-import Tamagotchi.Model.Model;
-import Tamagotchi.Model.TimeLoop;
+import com.codecool.witoldtafel.tamagotchi2.view.View;
+import com.codecool.witoldtafel.tamagotchi2.model.Model;
+import com.codecool.witoldtafel.tamagotchi2.model.TimeLoop;
 
 public class Controller {
 
     private TimeLoop timeLoop;
     private View view;
 
-    Controller(Model model, View view) {
+    public Controller(Model model, View view) {
         this.view = view;
         this.timeLoop = new TimeLoop(model);
 

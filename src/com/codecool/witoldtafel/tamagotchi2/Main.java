@@ -1,6 +1,8 @@
-package Tamagotchi;
+package com.codecool.witoldtafel.tamagotchi2;
 
-import Tamagotchi.Model.Model;
+import com.codecool.witoldtafel.tamagotchi2.controller.Controller;
+import com.codecool.witoldtafel.tamagotchi2.model.Model;
+import com.codecool.witoldtafel.tamagotchi2.view.View;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
