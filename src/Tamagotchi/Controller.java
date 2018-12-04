@@ -5,12 +5,10 @@ import Tamagotchi.Model.TimeLoop;
 
 public class Controller {
 
-    TimeLoop timeLoop;
-    private Model model;
+    private TimeLoop timeLoop;
     private View view;
 
-    public Controller(Model model, View view) {
-        this.model = model;
+    Controller(Model model, View view) {
         this.view = view;
         this.timeLoop = new TimeLoop(model);
 

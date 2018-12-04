@@ -22,7 +22,10 @@ class ModelTest {
 
     @Test
     void decreaseHealth() {
+        System.out.println(model.health);
+
         model.decreaseHealth(102);
+        System.out.println(model.health);
         assertEquals(model.health,0);
     }
 
@@ -52,31 +55,31 @@ class ModelTest {
 
     @Test
     void getHungry() {
-        model.getHungry();
-        assertEquals(model.hungry, true);
+        model.startHunger();
+        assertTrue(model.hungry);
     }
 
     @Test
     void eat() {
         model.eat();
-        assertEquals(model.hungry, false);
+        assertFalse(model.hungry);
     }
 
     @Test
     void getSleepy() {
-        model.getSleepy();
-        assertEquals(model.sleepy, true);
+        model.startSleepiness();
+        assertTrue(model.sleepy);
     }
 
     @Test
     void sleep() {
         model.sleep();
-        assertEquals(model.sleepy, false);
+        assertFalse(model.sleepy);
     }
     @Test
     void die() {
         model.die();
-        assertEquals(model.dead, true);
+        assertTrue(model.dead);
     }
 
 

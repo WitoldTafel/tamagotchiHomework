@@ -3,7 +3,6 @@ package Tamagotchi;
 import Tamagotchi.Model.Model;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -13,7 +12,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
 
         Model model = new Model();
         View view = new View(model);

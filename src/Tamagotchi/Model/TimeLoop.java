@@ -7,11 +7,6 @@ public class TimeLoop extends AnimationTimer {
 
     private Model model;
 
-    private final int getingHungryInterval = 15;
-    private final int getingSleepyInterval = 30;
-    private final int getingSickInterval = 10;
-    private final int getingSadinterval = 10;
-
     private int multiplier = 60;
     private int counter = 0;
 
@@ -38,7 +33,8 @@ public class TimeLoop extends AnimationTimer {
 
 /////////////////////////SADNESS////////////////////////////////
 
-            if(model.age/getingSadinterval == 0){
+            int getingSadinterval = 10;
+            if(model.age/ getingSadinterval == 0){
                 if (model.happiness>0){
                     model.decreaseHappiness(1);
                 }
@@ -46,8 +42,9 @@ public class TimeLoop extends AnimationTimer {
 
 /////////////////////////HUNGER////////////////////////////////
 
+            int getingHungryInterval = 15;
             if((model.age - model.lastMealTime) % getingHungryInterval == 0){
-                model.getHungry();
+                model.startHunger();
             }
             if (model.hungry & model.age % 5 == 0){
                 model.decreaseHealth(3);
@@ -55,8 +52,9 @@ public class TimeLoop extends AnimationTimer {
 
             }
 ////////////////////////SLEEPINESS////////////////////////////////
+            int getingSleepyInterval = 30;
             if((model.age - model.lastWakeUpTime) % getingSleepyInterval == 0){
-                model.getSleepy();
+                model.startSleepiness();
             }
             if (model.sleepy & model.age % 3 == 0){
                 model.decreaseHealth(1);
@@ -64,8 +62,9 @@ public class TimeLoop extends AnimationTimer {
                 model.decreaseEnergy(1);
             }
 ////////////////////////SICKNESS////////////////////////////////
+            int getingSickInterval = 10;
             if(model.age  % getingSickInterval == 0){
-                model.getsick();
+                model.startSickness();
             }
             if (model.sick){
                 model.decreaseHealth(2);

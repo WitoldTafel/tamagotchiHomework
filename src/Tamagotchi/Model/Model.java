@@ -5,11 +5,11 @@ import java.util.Random;
 public class Model {
 
     int age = 0;
-    double health = 200;
+    double health = 100;
     double energy = 10;
     double happiness = 0;
-    int numberOfDrugs = 5;
-    int nuberOfBeers = 5;
+    private int numberOfDrugs = 5;
+    private int nuberOfBeers = 5;
 
     int lastMealTime;
     int lastWakeUpTime;
@@ -34,7 +34,7 @@ public class Model {
     }
 
     void decreaseHealth(int i) {
-        if (health - i >= 0) {  //not tdd
+        if (health - i >= 0) {
             health -= i;
         } else {
             health = 0;
@@ -74,11 +74,11 @@ public class Model {
         }
     }
 
-    void getHungry() {
+    void startHunger() {
         hungry = true;
     }
 
-    void getSleepy() {
+    void startSleepiness() {
         sleepy = true;
     }
 
@@ -86,7 +86,7 @@ public class Model {
         dead = true;
     }
 
-    void getsick() {
+    void startSickness() {
         double chanceOfSickness = 10 + age / 60 - happiness / 2 - energy / 4;
 
         if (chanceOfSickness > new Random().nextInt(100)) {

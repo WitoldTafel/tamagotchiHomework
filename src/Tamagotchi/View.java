@@ -18,8 +18,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class View extends BorderPane {
-    public static final int WIDTH = 1000;
-    public static final int HEIGHT = 700;
+    static final int WIDTH = 1000;
+    static final int HEIGHT = 700;
     Slider slider = new Slider();
     ImageView pizza = new ImageView(new Image("pizza.png"));
     ImageView sleep = new ImageView(new Image("sleep.png"));
@@ -34,7 +34,7 @@ public class View extends BorderPane {
     private VBox leftVBox = new VBox();
     private ProgressBar healthBar = new ProgressBar(1);
     private ProgressBar happinessBar = new ProgressBar(1);
-    private ProgressBar energyBar = new ProgressBar(10);
+    private ProgressBar energyBar = new ProgressBar(1);
     private Text age = new Text();
     private Text msg = new Text();
     private Label numberOfBeersLeft = new Label();
@@ -44,25 +44,12 @@ public class View extends BorderPane {
     private int msgStart;
     private Tooltip healthTooltip = new Tooltip();
 
-    public View(Model model) {
-        this.model = model;
-        setHBox(this);
-        setLeftVBox(this);
-        setRightVBox(this);
-        setCenter(dude);
-        setNewsVBox(this);
-        updater.start();
-        Tooltip.install(healthBar, healthTooltip);
-
-
-    }
-
     private AnimationTimer updater = new AnimationTimer() {
         @Override
         public void handle(long now) {
             age.setText(String.valueOf(model.getAge()));
             energyBar.setProgress(model.getEnergy() / 10);
-            healthBar.setProgress(model.getHealth() / 200);
+            healthBar.setProgress(model.getHealth() / 100);
             healthTooltip.setText(String.valueOf(model.getHealth()));
             happinessBar.setProgress(model.getHappiness() / 20 + 0.5);
             numberOfBeersLeft.setText(model.getNuberOfBeers() + " beers left");
@@ -71,6 +58,7 @@ public class View extends BorderPane {
             hungry.setVisible(model.isHungry());
             tired.setVisible(model.isSleepy());
             leftVBox.getChildren().forEach(node -> node.setVisible(!model.isDead()));
+
             switch (model.getAge()) {
                 case 10:
                     dude.setImage(new Image("dino1.png"));
@@ -91,16 +79,27 @@ public class View extends BorderPane {
                     dude.setImage(new Image("dino6.png"));
                     break;
             }
-            if(model.isDead())dude.setImage(new Image("rip.png"));
-            if(model.getAge()>nightStart+5) {
-                View.this.setStyle("-fx-background-color: white;");//??????
+            if (model.isDead()) dude.setImage(new Image("rip.png"));
+            if (model.getAge() > nightStart + 5) {
+                setStyle("-fx-background-color: white;");//??????
                 msg.setFill(Color.BLACK);
             }
-            if(model.getAge()>msgStart+5) msg.setText("");
-            }
+            if (model.getAge() > msgStart + 5) msg.setText("");
+        }
     };
 
-        private void setHBox(BorderPane pane) {
+    public View(Model model) {
+        this.model = model;
+        setHBox(this);
+        setLeftVBox(this);
+        setRightVBox(this);
+        setCenter(dude);
+        setNewsVBox(this);
+        updater.start();
+        Tooltip.install(healthBar, healthTooltip);
+    }
+
+    private void setHBox(BorderPane pane) {
 
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(15, 12, 15, 12));
@@ -162,13 +161,13 @@ public class View extends BorderPane {
         pane.setBottom(newsVBox);
     }
 
-    void makeNight(){
+    void makeNight() {
         nightStart = model.getAge();
         this.setStyle("-fx-background-color: black;");
         msg.setFill(Color.GOLD);
     }
 
-    void setMsg(String msg){
+    void setMsg(String msg) {
         msgStart = model.getAge();
         this.msg.setText(msg);
     }
